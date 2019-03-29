@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
-import '../App.css';
-import Form from './Form'
 import Header from './Header'
+import Navbar from '../Navigation/Navbar'
+import FormContainer from '../Forms/FormContainer';
 
 export default class Home extends Component {
   render() {
     return (
         <div style={{textAlign: "center"}}>
             <Header />
-            <Form />
+            <Navbar />
+            <FormContainer />
         </div>
     )
   }
