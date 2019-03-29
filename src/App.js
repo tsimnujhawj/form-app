@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Home from './components/Home'
 
 class App extends Component {
 	render() {
     	return (
-			<div>
-				<h1>form-app</h1>
-			</div>
+			<Home />
     	);
   }
 }
