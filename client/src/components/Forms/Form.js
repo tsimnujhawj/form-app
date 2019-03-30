@@ -34,6 +34,19 @@ export default class Form extends Component {
     {
         // send data to database or rest service
         console.log("sending form...", this.state)
+        fetch(" https://my-json-server.typicode.com/tsimnujhawj/form-app", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
+            body: {
+                name: this.state.name,
+                email: this.state.email,
+                option: this.state.option,
+                notes: this.state.notes
+            }
+        })
     }
 
     render()
