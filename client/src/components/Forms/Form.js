@@ -6,10 +6,12 @@ export default class Form extends Component {
         super()
         this.state = {
             name: "",
-            email: ""
+            email: "",
+            option: ""
         }
         this.nameInput = React.createRef();
         this.emailInput = React.createRef();
+        this.optionInput = React.createRef();
 
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -19,7 +21,15 @@ export default class Form extends Component {
         event.preventDefault();
         this.setState({
             name: this.nameInput.current.value,
-            email: this.emailInput.current.value
+            email: this.emailInput.current.value,
+            option: this.optionInput.current.value
+        })
+    }
+
+    handleOptionChange()
+    {
+        this.setState({
+            option: this.optionInput.current.value
         })
     }
 
@@ -27,9 +37,17 @@ export default class Form extends Component {
     {
     return (
         <form onSubmit={this.handleSubmit}>
-            <h1>{this.state.name} | {this.state.email}</h1>
+            <h1>{this.state.name} | {this.state.email} | {this.state.option}</h1>
             <label>Name: <input type="text" ref={this.nameInput} /></label>
             <label> Email: <input type="text" ref={this.emailInput} /> </label>
+                <label>
+                    Request:
+                        <select ref={this.optionInput}>
+                            <option value="quote">Quote</option>
+                            <option value="meeting">Meeting</option>
+                            <option value="purchase">Purchase</option>
+                        </select>
+                </label>
             <input type="submit" value="Submit" />
         </form>
     )
