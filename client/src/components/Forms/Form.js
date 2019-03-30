@@ -27,6 +27,20 @@ export default class Form extends Component {
             option: this.optionInput.current.value,
             notes: this.notesInput.current.value
         })
+        this.sendFormToDatabase();
+    }
+
+    // TODO: write general form onchange handler
+    onChange(event)
+    {
+        console.log(event.target.name);
+    }
+
+
+    sendFormToDatabase()
+    {
+        // send data to database or rest service
+        console.log("sending form...", this.state)
     }
 
     render()
@@ -34,11 +48,11 @@ export default class Form extends Component {
     return (
         <form onSubmit={this.handleSubmit}>
             <h1>{this.state.name} | {this.state.email} | {this.state.option} | {this.state.notes}</h1>
-            <label>Name: <input type="text" ref={this.nameInput} /></label>
-            <label> Email: <input type="text" ref={this.emailInput} /> </label>
+            <label>Name: <input type="text" name="name" onChange={this.onChange} /></label>
+            <label> Email: <input type="text" name="email" value={this.emailInput} /> </label>
                 <label>
                     Request:
-                        <select ref={this.optionInput}>
+                        <select name="option" value={this.optionInput}>
                             <option value="quote">Quote</option>
                             <option value="meeting">Meeting</option>
                             <option value="purchase">Purchase</option>
@@ -47,7 +61,7 @@ export default class Form extends Component {
                 <br /><br />
                 <label>
                     Notes:
-                        <textarea style={{width: "600px", height: "200px", resize: "none"}} ref={this.notesInput} />
+                        <textarea name="notes" style={{width: "600px", height: "200px", resize: "none"}} value={this.notesInput} />
                 </label>
                 <br />
             <input type="submit" value="Submit" />
