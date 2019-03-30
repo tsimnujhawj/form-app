@@ -10,30 +10,23 @@ export default class Form extends Component {
             option: "",
             notes: ""
         }
-        this.nameInput = React.createRef();
-        this.emailInput = React.createRef();
-        this.optionInput = React.createRef();
-        this.notesInput = React.createRef();
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleSubmit(event)
     {
         event.preventDefault();
-        this.setState({
-            name: this.nameInput.current.value,
-            email: this.emailInput.current.value,
-            option: this.optionInput.current.value,
-            notes: this.notesInput.current.value
-        })
         this.sendFormToDatabase();
     }
 
-    // TODO: write general form onchange handler
-    onChange(event)
+    handleChange(event)
     {
         console.log(event.target.name);
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
 
 
@@ -47,12 +40,13 @@ export default class Form extends Component {
     {
     return (
         <form onSubmit={this.handleSubmit}>
-            <h1>{this.state.name} | {this.state.email} | {this.state.option} | {this.state.notes}</h1>
-            <label>Name: <input type="text" name="name" onChange={this.onChange} /></label>
-            <label> Email: <input type="text" name="email" value={this.emailInput} /> </label>
+            <h4>Please complete the form below</h4>
+            <label>Name: <input type="text" name="name" onChange={this.handleChange} /></label>
+            <label> Email: <input type="text" name="email" onChange={this.handleChange} /> </label>
                 <label>
                     Request:
-                        <select name="option" value={this.optionInput}>
+                        <select name="option" onChange={this.handleChange}>
+                            <option>Select a request</option>
                             <option value="quote">Quote</option>
                             <option value="meeting">Meeting</option>
                             <option value="purchase">Purchase</option>
@@ -61,7 +55,7 @@ export default class Form extends Component {
                 <br /><br />
                 <label>
                     Notes:
-                        <textarea name="notes" style={{width: "600px", height: "200px", resize: "none"}} value={this.notesInput} />
+                        <textarea name="notes" style={{width: "600px", height: "200px", resize: "none"}} value={this.notesInput} onChange={this.handleChange} />
                 </label>
                 <br />
             <input type="submit" value="Submit" />
