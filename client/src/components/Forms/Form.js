@@ -62,6 +62,11 @@ export default class Form extends Component {
         })
     }
 
+    updateData()
+    {
+        // update data here
+    }
+
     render()
     {
         // if data has not rendered, display loading...
