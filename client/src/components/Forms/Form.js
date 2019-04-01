@@ -34,36 +34,25 @@ export default class Form extends Component {
     {
         // send data to database or rest service
         console.log("sending form...", this.state)
-        // fetch("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", {
-        //     method: "POST",
-        //     headers: {
-        //         "Accept": "application/json",
-        //         "Content-Type": "application/json"
-        //     },
-        //     body: JSON.stringify({
-        //         name: this.state.name,
-        //         email: this.state.email,
-        //         option: this.state.option,
-        //         notes: this.state.notes
-        //     })
-        // })
-        // .then((res) => {
-        //     return res.json()
-        // })
-        // .then((json) => {
-        //     console.log(json)
-        // })
-        let data = JSON.stringify({
+
+        let dataSend = {
             "name": this.state.name,
             "email": this.state.email,
             "option": this.state.option,
             "notes": this.state.notes
+        }
+        axios.post("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", dataSend)
+        .then(res => {
+            console.log(res)
         })
-        XMLHttpRequest.send(data);
+        .catch(error => {
+            console.log(error.response)
+        })
     }
 
     fetchData()
     {
+        // grab data from...
         axios.get("https://jsonplaceholder.typicode.com/posts")
         .then(res => {
             this.setState({
@@ -73,22 +62,18 @@ export default class Form extends Component {
         })
     }
 
-    componentDidMount()
-    {
-        this.fetchData();
-    }
-
     render()
     {
-        const data = this.state.data;
-        if (data == null)
-        {
-            return (
-                <div>
-                    Loading...
-                </div>
-            )
-        }
+        // if data has not rendered, display loading...
+        // const data = this.state.data;
+        // if (data == null)
+        // {
+        //     return (
+        //         <div>
+        //             Loading...
+        //         </div>
+        //     )
+        // }
     return (
         <div>
         <form onSubmit={this.handleSubmit}>
@@ -113,7 +98,7 @@ export default class Form extends Component {
             <input type="submit" value="Submit" />
         </form>
         <ul>
-            {data.map((item, index) => <li key={index}>{item.body}</li>)}
+            {/* {data.map((item, index) => <li key={index}>{item.body}</li>)} */}
         </ul>
         </div>
     )
