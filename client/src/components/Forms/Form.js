@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class Form extends Component {
     constructor()
@@ -33,31 +34,43 @@ export default class Form extends Component {
     {
         // send data to database or rest service
         console.log("sending form...", this.state)
-        fetch("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                name: this.state.name,
-                email: this.state.email,
-                option: this.state.option,
-                notes: this.state.notes
-            })
-        }).then(res => res.json())
+        // fetch("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", {
+        //     method: "POST",
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         name: this.state.name,
+        //         email: this.state.email,
+        //         option: this.state.option,
+        //         notes: this.state.notes
+        //     })
+        // })
+        // .then((res) => {
+        //     return res.json()
+        // })
+        // .then((json) => {
+        //     console.log(json)
+        // })
+        let data = JSON.stringify({
+            "name": this.state.name,
+            "email": this.state.email,
+            "option": this.state.option,
+            "notes": this.state.notes
+        })
+        XMLHttpRequest.send(data);
     }
 
     fetchData()
     {
-        fetch("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", {
-            method: "GET",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json"
-            },
+        axios.get("https://jsonplaceholder.typicode.com/posts")
+        .then(res => {
+            this.setState({
+                data: res.data
+            })
+            console.log(this.state.data)
         })
-        .then(res => console.log(res))
     }
 
     componentDidMount()
@@ -67,7 +80,17 @@ export default class Form extends Component {
 
     render()
     {
+        const data = this.state.data;
+        if (data == null)
+        {
+            return (
+                <div>
+                    Loading...
+                </div>
+            )
+        }
     return (
+        <div>
         <form onSubmit={this.handleSubmit}>
             <h4>Please complete the form below</h4>
             <label>Name: <input type="text" name="name" onChange={this.handleChange} /></label>
@@ -89,6 +112,10 @@ export default class Form extends Component {
                 <br />
             <input type="submit" value="Submit" />
         </form>
+        <ul>
+            {data.map((item, index) => <li key={index}>{item.body}</li>)}
+        </ul>
+        </div>
     )
     }
 }
