@@ -1,8 +1,8 @@
-{
-    "body": {
+[
+    {
         "name": "name",
         "email": "email",
         "option": "option",
         "notes": "notes"
     }
-}
+]

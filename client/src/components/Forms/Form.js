@@ -23,7 +23,6 @@ export default class Form extends Component {
 
     handleChange(event)
     {
-        console.log(event.target.name);
         this.setState({
             [event.target.name]: event.target.value
         })
@@ -34,19 +33,36 @@ export default class Form extends Component {
     {
         // send data to database or rest service
         console.log("sending form...", this.state)
-        fetch(" https://my-json-server.typicode.com/tsimnujhawj/form-app/body", {
+        fetch("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", {
             method: "POST",
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json"
             },
-            body: {
+            body: JSON.stringify({
                 name: this.state.name,
                 email: this.state.email,
                 option: this.state.option,
                 notes: this.state.notes
-            }
+            })
+        }).then(res => res.json())
+    }
+
+    fetchData()
+    {
+        fetch("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json"
+            },
         })
+        .then(res => console.log(res))
+    }
+
+    componentDidMount()
+    {
+        this.fetchData();
     }
 
     render()
