@@ -67,6 +67,11 @@ export default class Form extends Component {
         // update data here
     }
 
+    deleteData()
+    {
+        // delete data here
+    }
+
     render()
     {
         // if data has not rendered, display loading...
