@@ -41,6 +41,7 @@ export default class Form extends Component {
             "option": this.state.option,
             "notes": this.state.notes
         }
+        console.log(dataSend)
         axios.post("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", dataSend)
         .then(res => {
             console.log(res)
