@@ -35,6 +35,7 @@ export default class Form extends Component {
         // send data to database or rest service
         console.log("sending form...", this.state)
 
+        // setup data to be sent
         let dataSend = {
             "name": this.state.name,
             "email": this.state.email,
