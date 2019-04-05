@@ -43,13 +43,13 @@ export default class Form extends Component {
             "notes": this.state.notes
         }
         console.log(dataSend)
-        axios.post("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", dataSend)
-        .then(res => {
-            console.log(res)
-        })
-        .catch(error => {
-            console.log(error.response)
-        })
+        // axios.post("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", dataSend)
+        // .then(res => {
+        //     console.log(res)
+        // })
+        // .catch(error => {
+        //     console.log(error.response)
+        // })
     }
 
     fetchData()
