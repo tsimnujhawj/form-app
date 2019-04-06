@@ -32,9 +32,6 @@ export default class Form extends Component {
 
     sendFormToDatabase()
     {
-        // send data to database or rest service
-        console.log("sending form...", this.state)
-
         // setup data to be sent
         let dataSend = {
             "name": this.state.name,
@@ -43,13 +40,6 @@ export default class Form extends Component {
             "notes": this.state.notes
         }
         console.log(dataSend)
-        // axios.post("https://my-json-server.typicode.com/tsimnujhawj/form-app/body", dataSend)
-        // .then(res => {
-        //     console.log(res)
-        // })
-        // .catch(error => {
-        //     console.log(error.response)
-        // })
     }
 
     fetchData()
@@ -74,18 +64,23 @@ export default class Form extends Component {
         // delete data here
     }
 
+    componentDidMount()
+    {
+        this.fetchData();
+    }
+
     render()
     {
         // if data has not rendered, display loading...
-        // const data = this.state.data;
-        // if (data == null)
-        // {
-        //     return (
-        //         <div>
-        //             Loading...
-        //         </div>
-        //     )
-        // }
+        const data = this.state.data;
+        if (data == null)
+        {
+            return (
+                <div>
+                    Loading...
+                </div>
+            )
+        }
     return (
         <div>
         <form onSubmit={this.handleSubmit}>
@@ -110,7 +105,7 @@ export default class Form extends Component {
             <input type="submit" value="Submit" />
         </form>
         <ul>
-            {/* {data.map((item, index) => <li key={index}>{item.body}</li>)} */}
+            {data.map((item, index) => <li key={index}>{item.body}</li>)}
         </ul>
         </div>
     )
