@@ -39,7 +39,19 @@ export default class Form extends Component {
             "option": this.state.option,
             "notes": this.state.notes
         }
-        console.log(dataSend)
+        const bodyFormData = new FormData()
+        bodyFormData.append("name", "test")
+        axios({
+            method: "POST",
+            url: "https://my-json-server.typicode.com/tsimnujhawj/form-app",
+            data: bodyFormData
+        })
+        .then((res)=> {
+            console.log(res)
+        })
+        .catch((err)=> {
+            console.log(err)
+        })
     }
 
     fetchData()
