@@ -54,16 +54,6 @@ export default class Form extends Component {
         })
     }
 
-    updateData()
-    {
-        // update data here
-    }
-
-    deleteData()
-    {
-        // delete data here
-    }
-
     componentDidMount()
     {
         this.fetchData();
