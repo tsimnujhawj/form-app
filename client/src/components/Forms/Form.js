@@ -107,7 +107,7 @@ export default class Form extends Component {
             <input type="submit" value="Submit" />
         </form>
         <ul>
-            {data.map((item, index) => <li key={index}>{item.body}</li>)}
+            {data.map((item, index) => <li key={index}>{item.title} | {item.body}</li>)}
         </ul>
         </div>
     )
