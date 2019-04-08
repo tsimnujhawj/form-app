@@ -41,6 +41,7 @@ export default class Form extends Component {
         }
         const bodyFormData = new FormData()
         bodyFormData.append("name", "test")
+        // TODO: check syntax
         axios({
             method: "POST",
             url: "https://my-json-server.typicode.com/tsimnujhawj/form-app",
