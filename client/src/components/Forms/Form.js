@@ -74,7 +74,6 @@ export default class Form extends Component {
 
     render()
     {
-        // if data has not rendered, display loading...
         const data = this.state.data;
         if (data == null)
         {
