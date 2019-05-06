@@ -6,6 +6,7 @@ export default class Form extends Component {
     {
         super()
         this.state = {
+            // declare empty states
             name: "",
             email: "",
             option: "",
