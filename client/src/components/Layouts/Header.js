@@ -4,7 +4,7 @@ export default class Header extends Component {
     render()
     {
         return (
-            <h1>form-app</h1>
+            <h1>form-app title</h1>
         )
     }
 }
