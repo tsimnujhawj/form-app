@@ -3,6 +3,8 @@ import Header from './Header'
 import Navbar from '../Navigation/Navbar'
 import FormContainer from '../Forms/FormContainer';
 
+// refactor name
+
 export default class Home extends Component {
     render()
     {
